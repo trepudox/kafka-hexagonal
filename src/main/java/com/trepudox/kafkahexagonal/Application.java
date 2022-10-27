@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		throw new UnsupportedOperationException("Projeto ainda nao funcional, apenas rascunho");
+//		SpringApplication.run(Application.class, args);
 	}
 
 }
