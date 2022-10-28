@@ -1,8 +1,10 @@
 package com.trepudox.kafkahexagonal.application.dto;
 
+import com.trepudox.kafkahexagonal.domain.ClienteImpactado;
+
 import java.time.LocalDateTime;
 
-public class ClienteImpactadoCardDTO {
+public class ClienteImpactadoDTO {
 
     private String app;
     private LocalDateTime data;
@@ -10,22 +12,25 @@ public class ClienteImpactadoCardDTO {
     private int impactados;
     private int altaPrioridade;
     private int baixaPrioridade;
-    private long porcentagemImpactados;
-    private long porcentagemAltaPrioridade;
-    private long porcentagemBaixaPrioridade;
 
-    public ClienteImpactadoCardDTO() {}
+    public ClienteImpactadoDTO() {}
 
-    public ClienteImpactadoCardDTO(String app, LocalDateTime data, int clientes, int impactados, int altaPrioridade, int baixaPrioridade, long porcentagemImpactados, long porcentagemAltaPrioridade, long porcentagemBaixaPrioridade) {
+    public ClienteImpactadoDTO(String app, LocalDateTime data, int clientes, int impactados, int altaPrioridade, int baixaPrioridade) {
         this.app = app;
         this.data = data;
         this.clientes = clientes;
         this.impactados = impactados;
         this.altaPrioridade = altaPrioridade;
         this.baixaPrioridade = baixaPrioridade;
-        this.porcentagemImpactados = porcentagemImpactados;
-        this.porcentagemAltaPrioridade = porcentagemAltaPrioridade;
-        this.porcentagemBaixaPrioridade = porcentagemBaixaPrioridade;
+    }
+
+    public ClienteImpactadoDTO(ClienteImpactado clienteImpactado) {
+        this.app = clienteImpactado.getApp();
+        this.data = clienteImpactado.getData();
+        this.clientes = clienteImpactado.getClientes();
+        this.impactados = clienteImpactado.getImpactados();
+        this.altaPrioridade = clienteImpactado.getAltaPrioridade();
+        this.baixaPrioridade = clienteImpactado.getBaixaPrioridade();
     }
 
     public String getApp() {
@@ -74,29 +79,5 @@ public class ClienteImpactadoCardDTO {
 
     public void setBaixaPrioridade(int baixaPrioridade) {
         this.baixaPrioridade = baixaPrioridade;
-    }
-
-    public long getPorcentagemImpactados() {
-        return porcentagemImpactados;
-    }
-
-    public void setPorcentagemImpactados(long porcentagemImpactados) {
-        this.porcentagemImpactados = porcentagemImpactados;
-    }
-
-    public long getPorcentagemAltaPrioridade() {
-        return porcentagemAltaPrioridade;
-    }
-
-    public void setPorcentagemAltaPrioridade(long porcentagemAltaPrioridade) {
-        this.porcentagemAltaPrioridade = porcentagemAltaPrioridade;
-    }
-
-    public long getPorcentagemBaixaPrioridade() {
-        return porcentagemBaixaPrioridade;
-    }
-
-    public void setPorcentagemBaixaPrioridade(long porcentagemBaixaPrioridade) {
-        this.porcentagemBaixaPrioridade = porcentagemBaixaPrioridade;
     }
 }

@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "topic")
+    // https://developer.confluent.io/quickstart/kafka-docker/
+    @KafkaListener(topics = "${kafka.topic.name}")
     public void listen(String message) {
-
+        System.out.println("Message from Kafka: " + message);
     }
 
 }

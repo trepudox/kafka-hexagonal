@@ -21,11 +21,11 @@ public class ClienteImpactado {
 
     public ClienteImpactado(String app, LocalDateTime data, int clientes, int impactados, int altaPrioridade, int baixaPrioridade) {
         this.app = app;
+        this.data = data;
         this.clientes = clientes;
         this.impactados = impactados;
         this.altaPrioridade = altaPrioridade;
         this.baixaPrioridade = baixaPrioridade;
-        this.data = data;
     }
 
     public BigDecimal calcularPorcentagemDeImpactados() {
