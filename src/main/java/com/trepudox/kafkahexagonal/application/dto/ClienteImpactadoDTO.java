@@ -24,15 +24,6 @@ public class ClienteImpactadoDTO {
         this.baixaPrioridade = baixaPrioridade;
     }
 
-    public ClienteImpactadoDTO(ClienteImpactado clienteImpactado) {
-        this.app = clienteImpactado.getApp();
-        this.data = clienteImpactado.getData();
-        this.clientes = clienteImpactado.getClientes();
-        this.impactados = clienteImpactado.getImpactados();
-        this.altaPrioridade = clienteImpactado.getAltaPrioridade();
-        this.baixaPrioridade = clienteImpactado.getBaixaPrioridade();
-    }
-
     public String getApp() {
         return app;
     }

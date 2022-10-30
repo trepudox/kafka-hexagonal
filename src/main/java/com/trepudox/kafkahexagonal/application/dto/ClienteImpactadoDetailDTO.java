@@ -1,7 +1,5 @@
 package com.trepudox.kafkahexagonal.application.dto;
 
-import com.trepudox.kafkahexagonal.domain.ClienteImpactado;
-
 import java.time.LocalDateTime;
 
 public class ClienteImpactadoDetailDTO {
@@ -28,18 +26,6 @@ public class ClienteImpactadoDetailDTO {
         this.porcentagemImpactados = porcentagemImpactados;
         this.porcentagemAltaPrioridade = porcentagemAltaPrioridade;
         this.porcentagemBaixaPrioridade = porcentagemBaixaPrioridade;
-    }
-
-    public ClienteImpactadoDetailDTO(ClienteImpactado clienteImpactado) {
-        this.app = clienteImpactado.getApp();
-        this.data = clienteImpactado.getData();
-        this.clientes = clienteImpactado.getClientes();
-        this.impactados = clienteImpactado.getImpactados();
-        this.altaPrioridade = clienteImpactado.getAltaPrioridade();
-        this.baixaPrioridade = clienteImpactado.getBaixaPrioridade();
-        this.porcentagemImpactados = clienteImpactado.calcularPorcentagemDeImpactados().doubleValue();
-        this.porcentagemAltaPrioridade = clienteImpactado.calcularPorcentagemDeAltaPrioridade().doubleValue();
-        this.porcentagemBaixaPrioridade = clienteImpactado.calcularPorcentagemDeBaixaPrioridade().doubleValue();
     }
 
     public String getApp() {
