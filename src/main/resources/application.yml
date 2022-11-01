@@ -1,5 +1,7 @@
 spring:
   kafka:
+    listener:
+      ack-mode: manual
     consumer:
       bootstrap-servers: 127.0.0.1:9092
       group-id: 1
@@ -7,3 +9,6 @@ spring:
 kafka:
   topic:
     name: cliente-topic
+
+dataHora:
+  pattern: yyyyMMddHHmm

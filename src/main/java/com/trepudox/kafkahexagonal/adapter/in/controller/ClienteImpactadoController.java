@@ -34,9 +34,9 @@ public class ClienteImpactadoController {
         return ResponseEntity.status(HttpStatus.OK).body(detail);
     }
 
-    @GetMapping("/{app}/last-day")
-    public ResponseEntity<List<ClienteImpactadoDTO>> getAllClienteImpactadosByAppFromLast24Hours(@PathVariable String app) {
-        List<ClienteImpactadoDTO> clientesImpactados = clienteImpactadoInputPort.findAllByAppInTheLast24Hours(app);
+    @GetMapping("/{app}/last-hour")
+    public ResponseEntity<List<ClienteImpactadoDTO>> getAllClienteImpactadosByAppFromLastHour(@PathVariable String app) {
+        List<ClienteImpactadoDTO> clientesImpactados = clienteImpactadoInputPort.findAllByAppInTheLastHour(app);
         return ResponseEntity.status(HttpStatus.OK).body(clientesImpactados);
     }
 

@@ -14,6 +14,6 @@ public interface ClienteImpactadoInputPort {
 
     List<ClienteImpactadoDetailDTO> retrieveClienteImpactadoDetailsFromTheLast5Minutes();
 
-    List<ClienteImpactadoDTO> findAllByAppInTheLast24Hours(String app);
+    List<ClienteImpactadoDTO> findAllByAppInTheLastHour(String app);
 
 }

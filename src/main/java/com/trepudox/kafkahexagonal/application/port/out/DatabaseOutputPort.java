@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DatabaseOutputPort {
-    List<ClienteImpactado> findAllInTheLast5Minutes();
 
-    List<ClienteImpactado> findAllByAppInTheLast24Hours(String app);
+    void save(ClienteImpactado clienteImpactado);
 
-    Optional<ClienteImpactado> findByAppAndData(String app, LocalDateTime data);
+    List<ClienteImpactado> findAllByDate(LocalDateTime localDateTime);
+
+    List<ClienteImpactado> findAllByAppAndDataHoraGreaterThan(String app, LocalDateTime localDateTime);
+
+    Optional<ClienteImpactado> findByAppAndData(String app, LocalDateTime localDateTime);
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class ClienteImpactadoMapper {
+public class ClienteImpactadoApplicationMapper {
 
     public ClienteImpactadoDTO domainToDto(ClienteImpactado domain) {
         ClienteImpactadoDTO dto = new ClienteImpactadoDTO();
