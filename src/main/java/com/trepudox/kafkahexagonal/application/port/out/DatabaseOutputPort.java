@@ -7,7 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DatabaseOutputPort {
-    List<ClienteImpactado> findAll();
 
-    Optional<ClienteImpactado> findByAppAndData(String app, LocalDateTime data);
+    void save(ClienteImpactado clienteImpactado);
+
+    List<ClienteImpactado> findAllByDate(LocalDateTime localDateTime);
+
+    List<ClienteImpactado> findAllByAppAndDataHoraGreaterThan(String app, LocalDateTime localDateTime);
+
+    Optional<ClienteImpactado> findByAppAndData(String app, LocalDateTime localDateTime);
 }

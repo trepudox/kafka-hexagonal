@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<lombok.version>1.18.24</lombok.version>
-		<mapstruct.version>1.5.1.Final</mapstruct.version>
+		<mapstruct.version>1.5.3.Final</mapstruct.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,9 +50,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-dynamodb</artifactId>
-			<version>1.12.328</version>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>dynamodb</artifactId>
+			<version>2.18.1</version>
 		</dependency>
 
 		<dependency>

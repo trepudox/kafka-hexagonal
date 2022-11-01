@@ -1,20 +1,27 @@
 package com.trepudox.kafkahexagonal.infrastructure.persistence.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.trepudox.kafkahexagonal.infrastructure.persistence.id.ClienteImpactadoModelId;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.trepudox.kafkahexagonal.infrastructure.configuration.LocalDateTimeDynamoDBConverter;
+import lombok.*;
 
-@Data
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @DynamoDBTable(tableName = "cliente_impactado")
 public class ClienteImpactadoModel {
 
-    private ClienteImpactadoModelId id;
+    @DynamoDBHashKey(attributeName = "app")
+    private String app;
+
+    @DynamoDBRangeKey(attributeName = "dataHora")
+    @DynamoDBIndexHashKey(attributeName = "dataHora", globalSecondaryIndexName = "dataHora_index")
+    @DynamoDBTypeConverted(converter = LocalDateTimeDynamoDBConverter.class)
+    private LocalDateTime dataHora;
+
     private int clientes;
     private int impactados;
     private int altaPrioridade;

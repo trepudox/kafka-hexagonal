@@ -1,14 +1,19 @@
 package com.trepudox.kafkahexagonal.application.port.in;
 
-import com.trepudox.kafkahexagonal.domain.ClienteImpactado;
+import com.trepudox.kafkahexagonal.application.dto.ClienteImpactadoDTO;
+import com.trepudox.kafkahexagonal.application.dto.ClienteImpactadoDetailDTO;
+import com.trepudox.kafkahexagonal.application.dto.ClienteImpactadoMessageDTO;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ClienteImpactadoInputPort {
 
-    List<ClienteImpactado> findAll();
+    void save(ClienteImpactadoMessageDTO messageDTO);
 
-    ClienteImpactado findByAppAndData(String app, LocalDateTime data);
+    ClienteImpactadoDetailDTO findByAppAndData(String app, String data);
+
+    List<ClienteImpactadoDetailDTO> retrieveClienteImpactadoDetailsFromTheLast5Minutes();
+
+    List<ClienteImpactadoDTO> findAllByAppInTheLastHour(String app);
 
 }
