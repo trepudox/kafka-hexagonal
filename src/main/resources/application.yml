@@ -8,7 +8,10 @@ spring:
 
 kafka:
   topic:
-    name: cliente-topic
+    name: cliente-impactado
 
 dataHora:
   pattern: yyyyMMddHHmm
+
+server:
+  port: 8080

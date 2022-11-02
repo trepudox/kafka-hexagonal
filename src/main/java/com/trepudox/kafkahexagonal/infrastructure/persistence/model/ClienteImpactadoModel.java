@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@DynamoDBTable(tableName = "cliente_impactado")
+@DynamoDBTable(tableName = "cliente-impactado")
 public class ClienteImpactadoModel {
 
     @DynamoDBHashKey(attributeName = "app")
     private String app;
 
-    @DynamoDBRangeKey(attributeName = "dataHora")
-    @DynamoDBIndexHashKey(attributeName = "dataHora", globalSecondaryIndexName = "dataHora_index")
+    @DynamoDBRangeKey(attributeName = "date")
+    @DynamoDBIndexHashKey(attributeName = "date", globalSecondaryIndexName = "date_index")
     @DynamoDBTypeConverted(converter = LocalDateTimeDynamoDBConverter.class)
-    private LocalDateTime dataHora;
+    private LocalDateTime date;
 
     private int clientes;
     private int impactados;

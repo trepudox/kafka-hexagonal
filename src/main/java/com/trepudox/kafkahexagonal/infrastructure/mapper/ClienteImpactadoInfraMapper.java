@@ -14,10 +14,10 @@ public interface ClienteImpactadoInfraMapper {
 
     ClienteImpactadoInfraMapper INSTANCE = Mappers.getMapper(ClienteImpactadoInfraMapper.class);
 
-    @Mapping(target = "data", source = "dataHora")
+    @Mapping(target = "data", source = "date")
     ClienteImpactado modelToDomain(ClienteImpactadoModel model);
 
-    @Mapping(target = "dataHora", source = "data")
+    @Mapping(target = "date", source = "data")
     ClienteImpactadoModel domainToModel(ClienteImpactado domain);
 
 }

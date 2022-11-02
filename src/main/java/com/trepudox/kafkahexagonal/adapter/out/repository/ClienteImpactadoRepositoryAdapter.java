@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class ClienteImpactadoRepositoryAdapter implements DatabaseOutputPort {
 
     @Value("${dataHora.pattern}")
-    private final String dataHoraPattern;
+    private String dataHoraPattern;
 
     private final ClienteImpactadoRepository clienteImpactadoRepository;
 
