@@ -20,13 +20,14 @@ public class ClienteImpactadoRepository {
     private final DynamoDBMapper dynamoDBMapper;
 
     public void save(ClienteImpactadoModel model) {
-        throw new UnsupportedOperationException();
+        dynamoDBMapper.save(model);
     }
 
     public Optional<ClienteImpactadoModel> buscarPorAppEData(String app, String dataHora) {
         DynamoDBQueryExpression<ClienteImpactadoModel> queryExpression = new DynamoDBQueryExpression<>();
 
-        queryExpression.setKeyConditionExpression("app = :app and dataHora = :dataHora");
+        queryExpression.setKeyConditionExpression("app = :app and #dataHora = :dataHora");
+        queryExpression.setExpressionAttributeNames(Map.of("#dataHora", "date"));
         queryExpression.setExpressionAttributeValues(Map.of(":app", new AttributeValue(app),
                 ":dataHora", new AttributeValue(dataHora)));
 
@@ -38,7 +39,8 @@ public class ClienteImpactadoRepository {
     public List<ClienteImpactadoModel> buscarPorAppEDataHoraMaiorQue(String app, String dataHora) {
         DynamoDBQueryExpression<ClienteImpactadoModel> queryExpression = new DynamoDBQueryExpression<>();
 
-        queryExpression.setKeyConditionExpression("app = :app and dataHora > :dataHora");
+        queryExpression.setKeyConditionExpression("app = :app and #dataHora > :dataHora");
+        queryExpression.setExpressionAttributeNames(Map.of("#dataHora", "date"));
         queryExpression.setExpressionAttributeValues(Map.of(":app", new AttributeValue(app),
                 ":dataHora", new AttributeValue(dataHora)));
 
@@ -50,9 +52,10 @@ public class ClienteImpactadoRepository {
     public List<ClienteImpactadoModel> buscarPorDataHora(String dataHora) {
         DynamoDBQueryExpression<ClienteImpactadoModel> queryExpression = new DynamoDBQueryExpression<>();
 
-        queryExpression.setIndexName("dataHora_index");
+        queryExpression.setIndexName("date_index");
         queryExpression.setConsistentRead(false); // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html
-        queryExpression.setKeyConditionExpression("dataHora = :dataHora");
+        queryExpression.setKeyConditionExpression("#dataHora = :dataHora");
+        queryExpression.setExpressionAttributeNames(Map.of("#dataHora", "date"));
         queryExpression.setExpressionAttributeValues(Map.of(":dataHora", new AttributeValue(dataHora)));
 
         PaginatedQueryList<ClienteImpactadoModel> result = dynamoDBMapper.query(ClienteImpactadoModel.class, queryExpression);

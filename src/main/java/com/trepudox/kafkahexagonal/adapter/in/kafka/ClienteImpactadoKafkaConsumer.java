@@ -7,6 +7,7 @@ import com.trepudox.kafkahexagonal.application.exception.ClienteImpactadoParseEx
 import com.trepudox.kafkahexagonal.application.port.in.ClienteImpactadoInputPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
@@ -14,24 +15,24 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class KafkaConsumer {
+public class ClienteImpactadoKafkaConsumer {
 
     private final ClienteImpactadoInputPort clienteImpactadoInputPort;
 
     // https://developer.confluent.io/quickstart/kafka-docker/
-    // {"data":"30/10/2022 13:10","app":"Itau Personnalite","clientes":"100","impactados":"20","altaPrioridade":"5","baixaPrioridade":"15"}
-//    @KafkaListener(topics = "${kafka.topic.name}")
-    public void listen(String message, Acknowledgment ack) {
-        log.info("Message from Kafka: " + message);
+    @KafkaListener(topics = "${kafka.topic.name}")
+    public void listen(ConsumerRecord<String, String> payload, Acknowledgment ack) {
+        String jsonMessage = payload.value();
+        log.info("Message from Kafka: {}", jsonMessage);
 
         try {
-            ClienteImpactadoMessageDTO messageDTO = new ObjectMapper().readValue(message, ClienteImpactadoMessageDTO.class);
+            ClienteImpactadoMessageDTO messageDTO = new ObjectMapper().readValue(jsonMessage, ClienteImpactadoMessageDTO.class);
             clienteImpactadoInputPort.save(messageDTO);
+            ack.acknowledge();
         } catch(JsonProcessingException e) {
             throw new ClienteImpactadoParseException("Nao foi possivel converter a mensagem recebida", e);
         }
 
-        ack.acknowledge();
     }
 
 }
