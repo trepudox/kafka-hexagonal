@@ -47,6 +47,9 @@ public class ClienteImpactado {
     }
 
     private BigDecimal doCalcularPorcentagem(BigDecimal dividendo, BigDecimal divisor) {
+        if(divisor.compareTo(BigDecimal.ZERO) == 0)
+            return BigDecimal.ZERO;
+
         return dividendo.divide(divisor, new MathContext(PRECISAO_PORCENTAGEM, ROUNDING_MODE))
                 .multiply(BigDecimal.valueOf(100));
     }
